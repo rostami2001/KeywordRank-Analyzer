@@ -1,0 +1,6 @@
+@use './variables' as *;
+
+@function space($count, $unit: rem) {
+  $base: map-get($base-space, $unit);
+  @return $base * $count;
+}

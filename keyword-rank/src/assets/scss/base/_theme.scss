@@ -1,0 +1,15 @@
+@use '../themes' as *;
+
+@mixin set-theme($theme) {
+  @each $name, $value in $theme {
+    --palette-#{$name}: #{$value};
+  }
+}
+
+:root {
+  @each $theme-name, $theme in $themes {
+    &[data-theme='#{$theme-name}'] {
+      @include set-theme($theme);
+    }
+  }
+}

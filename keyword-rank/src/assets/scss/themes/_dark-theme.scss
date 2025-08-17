@@ -1,0 +1,22 @@
+@use '../abstracts/_colors' as *;
+
+$dark-theme: (
+  primary: map-get($primary, 50),
+  primary-dark: map-get($primary, 30),
+  primary-darker: map-get($primary, 10),
+  secondary: map-get($success, 60),
+  secondary-dark: map-get($success, 20),
+  surface: map-get($neutral, 15),
+  surface-bg: map-get($neutral, 10),
+  surface-2: map-get($neutral, 5),
+  text-1: map-get($neutral, 100),
+  text-2: map-get($neutral, 85),
+  text-3: map-get($neutral, 60),
+  text-4: map-get($neutral, 35),
+  text-L: map-get($neutral, 100),
+  text-D: map-get($neutral, 20),
+  alert: map-get($warning, 60),
+  alert-dark: map-get($warning, 10),
+  error: map-get($error, 60),
+  error-dark: map-get($error, 10)
+);

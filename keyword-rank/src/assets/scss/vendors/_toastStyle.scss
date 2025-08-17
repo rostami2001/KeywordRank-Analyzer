@@ -1,0 +1,132 @@
+@use '../abstracts/' as *;
+.Toastify {
+  .toast-container-custom {
+    .toast-item-custom {
+      font-family: 'IranYekanMobile', 'iranyekan';
+      border-radius: $radius-4x;
+      background-color: var(--palette-text-1);
+      color: var(--palette-surface-bg);
+      @include typography(body-2);
+    }
+    margin: 0;
+    width: 100%;
+    padding: space(3);
+    bottom: 0;
+    top: auto;
+    left: 50%;
+    @include media-query(small) {
+      width: var(--toastify-toast-width);
+      padding: space(1);
+      top: space(4);
+    }
+    @media only screen and (max-width: 480px) {
+      margin: 0;
+      width: 100%;
+      padding: space(3);
+      bottom: 0;
+      top: auto;
+      .toast-item-custom {
+        margin: space(4) 0;
+      }
+    }
+  }
+}
+
+// custom animation
+@keyframes Toast__bounceInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -5px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes Toast__bounceOutUp {
+  20% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  40%,
+  45% {
+    opacity: 1;
+    transform: translate3d(0, 20px, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0);
+  }
+}
+
+@keyframes Toast__bounceInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes Toast__bounceOutDown {
+  20% {
+    transform: translate3d(0, 10px, 0);
+  }
+
+  40%,
+  45% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 2000px, 0);
+  }
+}
+
+.Toastify__bounceEnter {
+  animation-name: Toast__bounceInUp;
+  animation-duration: 1s;
+  @include media-query(small) {
+    animation-name: Toast__bounceInDown;
+    animation-duration: 1s;
+  }
+}
+.Toastify__bounceExit {
+  animation: Toast__bounceOutDown 1s both;
+
+  @include media-query(small) {
+    animation: Toast__bounceOutUp 1s both;
+  }
+}

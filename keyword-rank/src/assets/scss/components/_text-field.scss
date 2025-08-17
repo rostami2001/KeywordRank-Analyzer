@@ -1,0 +1,142 @@
+@use '../abstracts/mixin' as *;
+@use '../abstracts/functions' as *;
+
+@use '../abstracts/shape' as *;
+.field {
+  --label-color: var(--palette-text-3);
+  --border-color: var(--palette-surface);
+  --background-color: var(--palette-surface);
+
+  width: 100%;
+  gap: space(2.5);
+  transition: all 0.2s ease;
+  padding: 0 space(5);
+  border-radius: $radius-4x;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
+  @include flex(row, nowrap, center, center);
+
+  @include media-query(small) {
+    --background-color: var(--palette-surface-bg);
+  }
+
+  &__textarea {
+    resize: vertical;
+  }
+
+  &__content {
+    height: 100%;
+    flex: 1 1 auto;
+    position: relative;
+  }
+
+  &__label {
+    right: 0;
+    top: space(4);
+    position: absolute;
+    pointer-events: none;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    color: var(--label-color);
+    @include typography(body-large);
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    width: 100%;
+    min-height: 3.5rem;
+    background-color: transparent;
+    color: var(--palette-text-1);
+    @include typography(body-large);
+
+    &--hidden {
+      opacity: 0;
+    }
+
+    &:disabled {
+      //TodO: CHange this constant color later
+      color: #b7b9bd;
+    }
+
+    &:-webkit-autofill {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: var(--palette-text-1);
+    }
+  }
+
+  &__label--has-active,
+  &__input:focus ~ &__label {
+    top: space(1);
+    @include typography(body-small);
+  }
+
+  &:has(&__input:disabled) {
+    opacity: 0.5;
+    --label-color: var(--palette-text-3);
+    --border-color: var(--palette-text-3);
+  }
+
+  &--has-error {
+    --label-color: var(--palette-error);
+    --border-color: var(--palette-error);
+  }
+
+  &:has(&__input:focus) {
+    --label-color: var(--palette-primary);
+    --border-color: var(--palette-primary);
+  }
+
+  &__mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 10;
+  }
+
+  &__mask-input {
+    width: 100%;
+    min-height: 3.5rem;
+    padding-top: space(4.5);
+    background-color: transparent;
+    color: var(--palette-text-1);
+    @include typography(body-large);
+
+    &:disabled {
+      color: var(--palette-text-3);
+    }
+
+    &:-webkit-autofill {
+      -webkit-background-clip: text;
+    }
+  }
+
+  &__mask-input:disabled + &__mask-text {
+    opacity: 0.5;
+  }
+
+  &__mask-label {
+    right: 0;
+    top: space(4);
+    position: absolute;
+    pointer-events: none;
+    transition: all 0.15s ease;
+    color: var(--label-color);
+    @include typography(body-large);
+  }
+
+  &__mask-label--has-active,
+  &__mask-input:focus ~ &__mask-label {
+    top: space(1);
+    @include typography(body-small);
+  }
+
+  &__close-icon {
+    --icon-color: var(--palette-text-3);
+    cursor: pointer;
+  }
+}
